@@ -24,7 +24,7 @@ class Help_Scout_Happiness_Report_Functions {
         $api_key = $options['help_scout_api_key'];
 
         // no API key specified
-        if ( ! $api_key ) {
+        if ( empty( $api_key ) ) {
             return false;
         }
 
@@ -55,6 +55,10 @@ class Help_Scout_Happiness_Report_Functions {
     public function get_mailboxes() {
 
         $auth = $this->auth( 'https://api.helpscout.net/v1/mailboxes.json' );
+
+        if ( ! $auth ) {
+            return false;
+        }
 
         if ( false === ( get_transient( 'hs_happiness_report_mailboxes' ) ) ) {
             set_transient( 'hs_happiness_report_mailboxes', $auth->items, 60*60 );

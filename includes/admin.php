@@ -12,7 +12,7 @@ class Help_Scout_Happiness_Report_Admin {
 	}
 
 	/**
-	 * Setup the default hooks and actions
+	 * Delete transient when the admin settings are saved
 	 *
 	 * @since 1.0
 	 *
@@ -20,7 +20,7 @@ class Help_Scout_Happiness_Report_Admin {
 	 */
 	public function delete_transient( $old_value, $new_value ) {
 		// if the date range changes, delete the transient
-		if ( $old_value['help_scout_date_range'] !== $new_value['help_scout_date_range'] ) {
+		if ( isset( $old_value['help_scout_date_range'] ) && $old_value['help_scout_date_range'] !== $new_value['help_scout_date_range'] ) {
 			delete_transient( 'hs_happiness_report_ratings' );
 		}
 	}
@@ -70,7 +70,8 @@ class Help_Scout_Happiness_Report_Admin {
 	public function default_options() {
 
 		$defaults = array(
-			'help_scout_api_key' => '',
+			'help_scout_api_key'    => '',
+			'help_scout_date_range' => 'last_7_days'
 		);
 
 		return apply_filters( 'hs_hr_default_options', $defaults );
