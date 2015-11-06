@@ -19,10 +19,7 @@ class Help_Scout_Happiness_Report_Admin {
 	 * @return void
 	 */
 	public function delete_transient( $old_value, $new_value ) {
-		// if the date range changes, delete the transient
-		if ( isset( $old_value['help_scout_date_range'] ) && $old_value['help_scout_date_range'] !== $new_value['help_scout_date_range'] ) {
-			delete_transient( 'hs_happiness_report_ratings' );
-		}
+		delete_transient( 'hs_happiness_report_ratings' );
 	}
 
 	/**
