@@ -63,9 +63,6 @@ class Happiness_Reports_For_Help_Scout_Shortcodes {
 			// load scripts
 			wp_enqueue_script( 'hrfhs-frontend' );
 
-			// load styles
-			//wp_enqueue_style( 'hrfhs-frontend-css' );
-
 		}
 
     	return do_shortcode( $content );
