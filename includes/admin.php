@@ -8,7 +8,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
 		add_action( 'admin_init', array( $this, 'settings' ) );
-		add_action( 'update_option_help_scout_happiness_report', array( $this, 'delete_transient' ), 10, 2 );
+		add_action( 'update_option_help_scout_happiness_reports', array( $this, 'delete_transient' ), 10, 2 );
 	}
 
 	/**
@@ -30,8 +30,8 @@ class Happiness_Reports_For_Help_Scout_Admin {
 	public function register_menu() {
 
 		add_options_page(
-			__( 'Happiness Report', 'happiness-reports-for-help-scout' ),
-			__( 'Happiness Report', 'happiness-reports-for-help-scout' ),
+			__( 'Happiness Reports', 'happiness-reports-for-help-scout' ),
+			__( 'Happiness Reports', 'happiness-reports-for-help-scout' ),
 			'manage_options',
 			'happiness-reports-for-help-scout',
 			array( $this, 'admin_page' )
@@ -47,7 +47,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 	public function admin_page() { ?>
     <div class="wrap">
     	 <?php screen_icon( 'plugins' ); ?>
-        <h2><?php _e( 'Help Scout Happiness Report', 'happiness-reports-for-help-scout' ); ?></h2>
+        <h2><?php _e( 'Help Scout Happiness Reports', 'happiness-reports-for-help-scout' ); ?></h2>
 
         <form action="options.php" method="POST">
             <?php
@@ -70,7 +70,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 
 		$defaults = array(
 			'help_scout_api_key'    => '',
-			'help_scout_date_range' => 'last_7_days'
+			'help_scout_date_range' => 'last_12_months'
 		);
 
 		return apply_filters( 'hrfhs_default_options', $defaults );
@@ -84,12 +84,12 @@ class Happiness_Reports_For_Help_Scout_Admin {
 	 */
 	public function settings() {
 
-		if ( false == get_option( 'help_scout_happiness_report' ) ) {
-			add_option( 'help_scout_happiness_report', $this->default_options() );
+		if ( false == get_option( 'help_scout_happiness_reports' ) ) {
+			add_option( 'help_scout_happiness_reports', $this->default_options() );
 		}
 
 		add_settings_section(
-			'happiness-report',
+			'happiness-reports',
 			'',
 			'',
 			'happiness-reports-for-help-scout'
@@ -100,7 +100,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 			__( 'Help Scout API Key', 'happiness-reports-for-help-scout' ),
 			array( $this, 'callback_input' ),
 			'happiness-reports-for-help-scout',
-			'happiness-report',
+			'happiness-reports',
 			array(
 				'name'        => 'help_scout_api_key',
 				'id'          => 'help-scout-api-key',
@@ -113,7 +113,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 			__( 'Help Scout Mailbox', 'happiness-reports-for-help-scout' ),
 			array( $this, 'callback_mailboxes' ),
 			'happiness-reports-for-help-scout',
-			'happiness-report',
+			'happiness-reports',
 			array(
 				'name'        => 'help_scout_mailboxes',
 				'id'          => 'help-scout-mailboxes',
@@ -126,7 +126,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 			__( 'Date Range', 'happiness-reports-for-help-scout' ),
 			array( $this, 'callback_date_range' ),
 			'happiness-reports-for-help-scout',
-			'happiness-report',
+			'happiness-reports',
 			array(
 				'name'        => 'help_scout_date_range',
 				'id'          => 'help-scout-date-range',
@@ -143,7 +143,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 
 		register_setting(
 			'happiness-reports-for-help-scout',
-			'help_scout_happiness_report',
+			'help_scout_happiness_reports',
 			array( $this, 'sanitize' )
 		);
 
@@ -156,10 +156,10 @@ class Happiness_Reports_For_Help_Scout_Admin {
 	 */
 	public function callback_input( $args ) {
 
-		$options = get_option( 'help_scout_happiness_report' );
+		$options = get_option( 'help_scout_happiness_reports' );
 		$value   = isset( $options[$args['name']] ) ? $options[$args['name']] : '';
 	?>
-		<input type="text" class="regular-text" id="<?php echo $args['id']; ?>" name="help_scout_happiness_report[<?php echo $args['name']; ?>]" value="<?php echo $value; ?>" />
+		<input type="text" class="regular-text" id="<?php echo $args['id']; ?>" name="help_scout_happiness_reports[<?php echo $args['name']; ?>]" value="<?php echo $value; ?>" />
 
 		<?php if ( isset( $args['description'] ) ) : ?>
 			<p class="description"><?php echo $args['description']; ?></p>
@@ -175,12 +175,12 @@ class Happiness_Reports_For_Help_Scout_Admin {
 	 */
 	public function callback_date_range( $args ) {
 
-		$options = get_option( 'help_scout_happiness_report' );
+		$options = get_option( 'help_scout_happiness_reports' );
 		$value   = isset( $options[$args['name']] ) ? $options[$args['name']] : '';
 
 	?>
 
-		<select id="<?php echo $args['id']; ?>" name="help_scout_happiness_report[<?php echo $args['name']; ?>]">
+		<select id="<?php echo $args['id']; ?>" name="help_scout_happiness_reports[<?php echo $args['name']; ?>]">
 			<?php foreach( $args['options'] as $date_range => $label ) : ?>
 			<option value="<?php echo $date_range; ?>" <?php selected( $value, $date_range ); ?>><?php echo $label; ?></option>
 			<?php endforeach; ?>
@@ -200,7 +200,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 	 */
 	public function callback_mailboxes( $args ) {
 
-		$options = get_option( 'help_scout_happiness_report' );
+		$options   = get_option( 'help_scout_happiness_reports' );
 
 		$mailboxes = happiness_reports_for_help_scout()->functions->get_mailboxes();
 
@@ -208,10 +208,10 @@ class Happiness_Reports_For_Help_Scout_Admin {
         $api_key = $options['help_scout_api_key'];
 
 		if ( ! $api_key ) {
-			_e( 'Please enter you API key above and save the settings to view your mailboxes', '' );
+			_e( 'Please enter you API key above and click "Save Changes" to view your mailboxes', 'happiness-reports-for-help-scout' );
 		}
 
-		if ( ! $mailboxes ) {
+		if ( empty( $mailboxes ) ) {
 			return;
 		}
 
@@ -221,7 +221,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 	?>
 
 		<label for="<?php echo $mailbox->id; ?>" class="description">
-			<input type="checkbox" class="" id="<?php echo $mailbox->id; ?>" name="help_scout_happiness_report[<?php echo $args['name']; ?>][<?php echo $key; ?>]" value="<?php echo $mailbox->id; ?>"  <?php checked( $checked, $mailbox->id ); ?> />
+			<input type="checkbox" class="" id="<?php echo $mailbox->id; ?>" name="help_scout_happiness_reports[<?php echo $args['name']; ?>][<?php echo $key; ?>]" value="<?php echo $mailbox->id; ?>"  <?php checked( $checked, $mailbox->id ); ?> />
 			<?php echo $mailbox->name; ?>
 		</label>
 		<br />
@@ -246,11 +246,7 @@ class Happiness_Reports_For_Help_Scout_Admin {
 
 			// Check to see if the current option has a value. If so, process it.
 			if ( isset( $input[$key] ) ) {
-
-				// Strip all HTML and PHP tags and properly handle quoted strings
-			//	$output[$key] = strip_tags( stripslashes( $input[ $key ] ) );
 				$output[$key] = $input[ $key ];
-
 			}
 
 		}
@@ -263,4 +259,4 @@ class Happiness_Reports_For_Help_Scout_Admin {
 
 }
 
-$help_scout_happiness_report_admin = new Happiness_Reports_For_Help_Scout_Admin;
+$help_scout_happiness_reports_admin = new Happiness_Reports_For_Help_Scout_Admin;

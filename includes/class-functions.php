@@ -70,7 +70,7 @@ class Happiness_Reports_For_Help_Scout_Functions {
     public function auth( $request = '', $args = array() ) {
 
         // get options
-        $options = get_option( 'help_scout_happiness_report' );
+        $options = get_option( 'help_scout_happiness_reports' );
 
         // get API key
         $api_key = $options['help_scout_api_key'];
@@ -113,13 +113,12 @@ class Happiness_Reports_For_Help_Scout_Functions {
 
             if ( $auth ) {
                 // returns true
-                $mailboxes = set_transient( 'happiness_reports_mailboxes', $auth->items, 60*60 );
+                set_transient( 'happiness_reports_mailboxes', $auth->items, 60*60 );
             }
 
-        } else {
-
-            $mailboxes = get_transient( 'happiness_reports_mailboxes' );
         }
+
+        $mailboxes = get_transient( 'happiness_reports_mailboxes' );
 
         return $mailboxes;
 
@@ -132,7 +131,7 @@ class Happiness_Reports_For_Help_Scout_Functions {
      */
     public function get_options() {
 
-        $options = get_option( 'help_scout_happiness_report' );
+        $options = get_option( 'help_scout_happiness_reports' );
 
         return $options;
     }
