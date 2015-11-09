@@ -1,15 +1,17 @@
-=== Help Scout Happiness Report ===
+=== Happiness Reports for Help Scout ===
 Contributors: sumobi
-Tags: Help Scout, Help, Support, Happiness, Ratings, Andrew Munro, sumobi
+Tags: Help Scout, Help, Scout, HelpScout, Support, Happiness, Ratings, Reports, Andrew Munro, sumobi
 Requires at least: 3.9
 Tested up to: 4.3.1
-Stable tag: 1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Description
+Add Help Scout happiness reports to your website
 
 == Description ==
+
+Happiness Reports for Help Scout allows you to show Help Scout happiness reports on your website. Note, a paid Help Scout plan is required for API Access, you cannot use this plugin with their free plan.
 
 == Installation ==
 
@@ -25,5 +27,5 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 == Changelog ==
 
 
-= 1.0 =
+= 1.0.0 =
 * Initial release

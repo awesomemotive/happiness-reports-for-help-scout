@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Help Scout Happiness Report\n"
-"POT-Creation-Date: 2015-09-27 22:43+1300\n"
+"Project-Id-Version: Happiness Reports for Help Scout\n"
+"POT-Creation-Date: 2015-11-09 23:02+1300\n"
 "PO-Revision-Date: 2015-04-04 11:12-0600\n"
 "Last-Translator: Andrew Munro, Sumobi <andrew@sumobi.com>\n"
 "Language-Team: Sumobi <support@sumobi.com>\n"
@@ -10,22 +10,23 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../help-scout-happiness-report.php:86 ../help-scout-happiness-report.php:98
+#: ../happiness-reports-for-help-scout.php:86
+#: ../happiness-reports-for-help-scout.php:98
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: ../includes/admin.php:36 ../includes/admin.php:37
+#: ../includes/admin.php:33 ../includes/admin.php:34
 msgid "Happiness Report"
 msgstr ""
 
-#: ../includes/admin.php:51
+#: ../includes/admin.php:50
 msgid "Help Scout Happiness Report"
 msgstr ""
 
@@ -53,6 +54,18 @@ msgstr ""
 msgid "Select a date range"
 msgstr ""
 
-#: ../includes/admin.php:224
+#: ../includes/admin.php:211
 msgid "Please enter you API key above and save the settings to view your mailboxes"
+msgstr ""
+
+#: ../includes/class-functions.php:22
+msgid "Great"
+msgstr ""
+
+#: ../includes/class-functions.php:23
+msgid "Okay"
+msgstr ""
+
+#: ../includes/class-functions.php:24
+msgid "Not Good"
 msgstr ""
