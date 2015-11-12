@@ -24,37 +24,37 @@ use PHP functions for greater control.
 
 Shortcode Usage:
 
-[happiness_report]
+= [happiness_report] =
 Show all ratings (great, okay, not good) as an unordered list
 
-[happiness_report rating="great"]
+= [happiness_report rating="great"] =
 Show only the "great" rating
 
-[happiness_report rating="okay"]
+= [happiness_report rating="okay"] =
 Show only the "okay" rating
 
-[happiness_report rating="not good"]
+= [happiness_report rating="not good"] =
 Show only the "not good" ratings
 
-[happiness_report graph="yes"]
+= [happiness_report graph="yes"] =
 Show all ratings (great, okay, not good) as individual graphs
 
-[happiness_report rating="great" graph="yes"]
+= [happiness_report rating="great" graph="yes"] =
 Show only the "great" rating as a graph
 
-[happiness_report rating="okay" graph="yes"]
+= [happiness_report rating="okay" graph="yes"] =
 Show only the "okay" rating as a graph
 
-[happiness_report rating="not good" graph="yes"]
+= [happiness_report rating="not good" graph="yes"] =
 Show only the "not good" rating as a graph
 
 Setup:
 
 1. Activate the plugin
 2. Go to Settings &rarr; Happiness reports
-3. Enter your Help Scout API Key in the provided fields
+3. Enter your [Help Scout API Key](http://developer.helpscout.net/#generating-an-api-key "Help Scout API Key") in the provided fields
 4. Save changes
-5. Select the mailboxes you'd like to show your happiness reports From
+5. Select the mailboxes you'd like to show happiness reports from
 6. Select a date range
 7. Save changes
 8. Use the provided shortcodes to show your happiness reports on your website!
