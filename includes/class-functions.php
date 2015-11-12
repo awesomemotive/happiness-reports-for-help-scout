@@ -264,6 +264,7 @@ class Happiness_Reports_For_Help_Scout_Functions {
 
         // send request to Help Scout API
         $data    = $this->auth( 'https://api.helpscout.net/v1/reports/happiness.json' . $query_string );
+
         $ratings = $data->current;
 
         // store ratings in transient
@@ -272,4 +273,5 @@ class Happiness_Reports_For_Help_Scout_Functions {
         return $ratings;
 
     }
+
 }
