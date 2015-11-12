@@ -61,6 +61,7 @@ if ( ! class_exists( 'Happiness_Reports_For_Help_Scout' ) ) {
 				self::$instance->setup_constants();
 				self::$instance->load_textdomain();
 				self::$instance->includes();
+				self::$instance->hooks();
 
 				// Setup objects
 				self::$instance->functions = new Happiness_Reports_For_Help_Scout_Functions;
@@ -199,6 +200,29 @@ if ( ! class_exists( 'Happiness_Reports_For_Help_Scout' ) ) {
 				require_once HRFHS_PLUGIN_DIR . 'includes/admin.php';
 			}
 
+		}
+
+		/**
+		 * Hooks
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function hooks() {
+			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'settings_link' ), 10, 2 );
+		}
+
+		/**
+		 * Plugin settings link
+		 *
+		 * @since 1.0.0
+		*/
+		public function settings_link( $links ) {
+			$plugin_links = array(
+				'<a href="' . admin_url( 'options-general.php?page=happiness-reports-for-help-scout' ) . '">' . __( 'Settings', 'happiness-reports-for-help-scout' ) . '</a>',
+			);
+
+			return array_merge( $plugin_links, $links );
 		}
 
 	}
